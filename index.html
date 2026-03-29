@@ -42,10 +42,61 @@ nav button {
 
 #countdown { text-align:center; font-weight:bold; color:#c00000; }
 
-table { width:100%; border-collapse:collapse; margin-top:1rem; }
-th { background:#c00000; color:white; padding:10px; }
-td { padding:10px; border-bottom:1px solid #eee; }
-tr:nth-child(even){background:#f5f5f5;}
+.payment-link {
+  text-align:center;
+  font-size:1.2rem;
+  font-weight:bold;
+  margin:1rem 0;
+}
+
+.payment-link a {
+  color:#c00000;
+  text-decoration:none;
+}
+
+.deadline-note {
+  text-align:center;
+  font-weight:bold;
+  color:#c00000;
+  margin-top:1rem;
+}
+
+#leaderboard {
+  overflow-x:auto;
+}
+
+table {
+  width:100%;
+  min-width:900px;
+  border-collapse:collapse;
+  margin-top:1rem;
+}
+
+th {
+  background:#c00000;
+  color:white;
+  padding:10px;
+  text-align:left;
+}
+
+td {
+  padding:10px;
+  border-bottom:1px solid #eee;
+}
+
+tr:nth-child(even){
+  background:#f5f5f5;
+}
+
+@media (max-width: 768px) {
+  body { padding:1rem; }
+  .container { padding:1.25rem; }
+  nav button {
+    display:block;
+    width:100%;
+    margin:0.5rem 0;
+  }
+}
 </style>
 </head>
 
@@ -58,7 +109,6 @@ tr:nth-child(even){background:#f5f5f5;}
 
 <div id="countdown"></div>
 
-<!-- ENTRY -->
 <div id="entryTab">
 
 <h1>Gibraltar Gaels Masters 2026 Fundraiser</h1>
@@ -247,7 +297,6 @@ tr:nth-child(even){background:#f5f5f5;}
 </div>
 </div>
 
-<!-- LEADERBOARD -->
 <div id="leaderboardTab" style="display:none;">
 <div class="container">
 <h2>Leaderboard</h2>
@@ -256,60 +305,124 @@ tr:nth-child(even){background:#f5f5f5;}
 </div>
 
 <script>
+let leaderboardLoaded = false;
+
+function parseCSVLine(line) {
+  const result = [];
+  let current = "";
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    const nextChar = line[i + 1];
+
+    if (char === '"') {
+      if (inQuotes && nextChar === '"') {
+        current += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === "," && !inQuotes) {
+      result.push(current);
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+
+  result.push(current);
+  return result;
+}
+
+async function loadLeaderboard() {
+  const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQtmHxiXLA6_CNu9E8DDYMsWSo1Es4nJ5Jk4-KGM08-OiTYxeG0LNDa7UmRn5Azon2y1iDVowv9--u7/pub?gid=1858004008&single=true&output=csv";
+
+  try {
+    const res = await fetch(url);
+    const text = await res.text();
+    const rows = text.trim().split("\n").map(parseCSVLine);
+    const data = rows.slice(1).filter(row => row.length >= 12);
+
+    data.sort((a, b) => (parseFloat(b[11]) || 0) - (parseFloat(a[11]) || 0));
+
+    let html = `
+      <div style="overflow-x:auto;">
+        <table>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Group A</th>
+            <th>Group B</th>
+            <th>Group C</th>
+            <th>Group D</th>
+            <th>Group E</th>
+            <th>Total</th>
+          </tr>
+    `;
+
+    data.forEach((r, i) => {
+      let medal = "";
+      if (i === 0) medal = "🥇 ";
+      else if (i === 1) medal = "🥈 ";
+      else if (i === 2) medal = "🥉 ";
+
+      html += `
+        <tr>
+          <td>${i + 1}</td>
+          <td><strong>${medal}${r[0] || ""}</strong></td>
+          <td>${r[1] || "-"}</td>
+          <td>${r[2] || "-"}</td>
+          <td>${r[3] || "-"}</td>
+          <td>${r[4] || "-"}</td>
+          <td>${r[5] || "-"}</td>
+          <td><strong>${r[11] || 0}</strong></td>
+        </tr>
+      `;
+    });
+
+    html += "</table></div>";
+    document.getElementById("leaderboard").innerHTML = html;
+  } catch (error) {
+    console.error("Leaderboard failed to load:", error);
+    document.getElementById("leaderboard").innerHTML = "<p>Unable to load leaderboard right now.</p>";
+  }
+}
+
 function showTab(tab){
-document.getElementById('entryTab').style.display = tab==='entry'?'block':'none';
-document.getElementById('leaderboardTab').style.display = tab==='leaderboard'?'block':'none';
-if(tab==="leaderboard"){loadLeaderboard();}
+  document.getElementById('entryTab').style.display = tab === 'entry' ? 'block' : 'none';
+  document.getElementById('leaderboardTab').style.display = tab === 'leaderboard' ? 'block' : 'none';
+
+  if (tab === "leaderboard" && !leaderboardLoaded) {
+    loadLeaderboard();
+    leaderboardLoaded = true;
+  }
 }
 
 document.getElementById("entryForm").addEventListener("submit", function(e){
-e.preventDefault();
+  e.preventDefault();
 
-fetch("https://script.google.com/macros/s/AKfycbyLK1O15iIFUX_D1NNj4Z7GOt2LJtD0pmGGcxzvymBvSljJSqYFLqxz3KISelY07WdErA/exec", {
-method:"POST",
-body:new FormData(e.target),
-mode:"no-cors"
-})
-.then(()=>window.location.href="thank-you.html")
-.catch(()=>alert("Submission failed. Try again."));
+  fetch("https://script.google.com/macros/s/AKfycbyLK1O15iIFUX_D1NNj4Z7GOt2LJtD0pmGGcxzvymBvSljJSqYFLqxz3KISelY07WdErA/exec", {
+    method:"POST",
+    body:new FormData(e.target),
+    mode:"no-cors"
+  })
+  .then(()=>window.location.href="thank-you.html")
+  .catch(()=>alert("Submission failed. Try again."));
 });
 
-async function loadLeaderboard(){
-const url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQtmHxiXLA6_CNu9E8DDYMsWSo1Es4nJ5Jk4-KGM08-OiTYxeG0LNDa7UmRn5Azon2y1iDVowv9--u7/pub?gid=1858004008&single=true&output=csv";
-const res=await fetch(url);
-const text=await res.text();
-const rows=text.trim().split("\n").map(r=>r.split(","));
-const data=rows.slice(1);
-
-data.sort((a,b)=>b[11]-a[11]);
-
-let html="<table><tr><th>Rank</th><th>Name</th><th>Total</th></tr>";
-
-data.forEach((r,i)=>{
-let medal="";
-if(i==0)medal="🥇 ";
-if(i==1)medal="🥈 ";
-if(i==2)medal="🥉 ";
-
-html+=`<tr><td>${i+1}</td><td>${medal}${r[0]}</td><td>${r[11]}</td></tr>`;
-});
-
-html+="</table>";
-document.getElementById("leaderboard").innerHTML=html;
-}
-
-const deadline=new Date("April 9, 2026 12:00:00 GMT+0200");
-setInterval(()=>{
-const t=deadline-new Date();
-if(t<=0){
-document.getElementById("countdown").innerHTML="Entries Closed";
-return;
-}
-const d=Math.floor(t/(1000*60*60*24));
-const h=Math.floor((t%(1000*60*60*24))/(1000*60*60));
-const m=Math.floor((t%(1000*60*60))/(1000*60));
-document.getElementById("countdown").innerHTML=`Entries close in: ${d}d ${h}h ${m}m`;
-},1000);
+const deadline = new Date("April 9, 2026 12:00:00 GMT+0200");
+setInterval(() => {
+  const t = deadline - new Date();
+  if (t <= 0) {
+    document.getElementById("countdown").innerHTML = "Entries Closed";
+    return;
+  }
+  const d = Math.floor(t / (1000 * 60 * 60 * 24));
+  const h = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const m = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+  document.getElementById("countdown").innerHTML = `Entries close in: ${d}d ${h}h ${m}m`;
+}, 1000);
 </script>
 
 </body>
