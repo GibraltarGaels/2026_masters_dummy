@@ -6,274 +6,370 @@
   <title>Gibraltar Gaels Masters 2026 Fundraiser</title>
 
   <style>
-    body { font-family: Arial; padding: 2rem; background:#f9f9f9; }
-    h1,h2 { text-align:center; color:#c00000; }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      color: #222;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #c00000;
+    }
+
+    nav {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    nav button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      background-color: #c00000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #countdown {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: #c00000;
+    }
 
     .container {
-      max-width:900px;
-      margin:2rem auto;
-      background:#fff;
-      padding:2rem;
-      border:3px solid #c00000;
-      border-radius:20px;
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border: 3px solid #c00000;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
     }
 
-    label { display:block; margin-top:1rem; font-weight:bold; }
-    select,input,button { width:100%; padding:10px; margin-top:5px; }
-
-    button {
-      background:#c00000;
-      color:white;
-      border:none;
-      font-weight:bold;
-      cursor:pointer;
-      margin-top:1.5rem;
+    .payment-link {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 1rem 0;
     }
 
-    nav { text-align:center; margin-bottom:2rem; }
-    nav button {
-      margin:0 10px;
-      padding:10px 20px;
-      background:#c00000;
-      color:white;
-      border:none;
-      border-radius:5px;
+    .payment-link a {
+      color: #c00000;
+      text-decoration: none;
     }
 
-    #countdown { text-align:center; font-weight:bold; }
+    .deadline-note {
+      text-align: center;
+      font-weight: bold;
+      color: #c00000;
+      margin-top: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input, select, button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button[type="submit"] {
+      background-color: #c00000;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 1.5rem;
+    }
+
+    button[type="submit"]:hover,
+    nav button:hover {
+      background-color: #a00000;
+    }
+
+    .leaderboard-note {
+      text-align: center;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .container {
+        padding: 1.25rem;
+      }
+
+      nav button {
+        display: block;
+        width: 100%;
+        margin: 0.5rem 0;
+      }
+    }
   </style>
 </head>
-
 <body>
 
-<nav>
-  <button onclick="showTab('entry')">To Enter</button>
-  <button onclick="showTab('leaderboard')">Leaderboard</button>
-</nav>
+  <nav>
+    <button onclick="showTab('entry')">To Enter</button>
+    <button onclick="showTab('leaderboard')">Leaderboard</button>
+  </nav>
 
-<div id="countdown"></div>
+  <div id="countdown"></div>
 
-<div id="entryTab">
+  <div id="entryTab">
+    <h1>Gibraltar Gaels Masters 2026 Fundraiser</h1>
 
-<h1>Gibraltar Gaels Masters 2026 Fundraiser</h1>
+    <div class="container">
+      <h2>How It Works</h2>
 
-<div class="container">
-  <h2>How It Works</h2>
-  <p>Pick one golfer from each group.</p>
+      <p><strong>1.</strong> Choose <strong>one golfer from each of the five groups</strong> below.</p>
 
-  <ul>
-    <li>1st: 5 pts</li>
-    <li>2nd: 4 pts</li>
-    <li>3rd: 3 pts</li>
-    <li>4th: 2 pts</li>
-    <li>5th: 1 pt</li>
-    <li>Missed Cut: -1</li>
-  </ul>
+      <p><strong>2.</strong> Your golfers will score points based on where they finish within their group:</p>
+      <ul>
+        <li>1st in group: 5 points</li>
+        <li>2nd in group: 4 points</li>
+        <li>3rd in group: 3 points</li>
+        <li>4th in group: 2 points</li>
+        <li>5th in group: 1 point</li>
+        <li>Missed cut: -1 point</li>
+      </ul>
 
-  <p><strong>Bonus</strong></p>
-  <ul>
-    <li>+5 Winner</li>
-    <li>+2 Round 1 Leader</li>
-  </ul>
+      <p><strong>3.</strong> Bonus points are also available:</p>
+      <ul>
+        <li>+5 points if your golfer wins the Masters</li>
+        <li>+2 points if your golfer is the tournament leader after Round 1</li>
+      </ul>
 
-  <p><strong>Entry €10</strong></p>
-  <p><strong>Entries close April 9th at 12:00</strong></p>
-</div>
+      <p><strong>4.</strong> If players tie for a position within a group, dead-heat scoring applies. The points for the tied positions are added together and divided equally between those players.</p>
 
-<div class="container">
-<form id="entryForm">
+      <p><em>Example:</em> if 3 players tie for 2nd place, the points for 2nd, 3rd and 4th are added together (4 + 3 + 2 = 9), so each player receives 3 points.</p>
 
-<label>Name</label>
-<input type="text" name="name" required>
+      <p><strong>5.</strong> Entry is <strong>€10</strong>. The winner takes the full prize pool, with tied winners splitting the pot equally.</p>
 
-<label>Email</label>
-<input type="email" name="email" required>
+      <p><strong>6.</strong> To enter, send your payment by Revolut and then submit your picks using the form below.</p>
 
-<!-- GROUP A -->
-<label>Group A</label>
-<select name="groupA" required>
-<option value="">Select</option>
-<option>Scottie Scheffler</option>
-<option>Bryson DeChambeau</option>
-<option>Rory McIlroy</option>
-<option>Jon Rahm</option>
-<option>Ludvig Åberg</option>
-<option>Xander Schauffele</option>
-<option>Matt Fitzpatrick</option>
-<option>Tommy Fleetwood</option>
-<option>Cameron Young</option>
-<option>Collin Morikawa</option>
-<option>Justin Rose</option>
-<option>Hideki Matsuyama</option>
-<option>Brooks Koepka</option>
-<option>Patrick Reed</option>
-<option>Viktor Hovland</option>
-<option>Robert MacIntyre</option>
-</select>
+      <div class="payment-link">
+        <a href="https://revolut.me/killiavb3" target="_blank">💸 revolut.me/killiavb3</a>
+      </div>
 
-<!-- GROUP B -->
-<label>Group B</label>
-<select name="groupB" required>
-<option value="">Select</option>
-<option>Jordan Spieth</option>
-<option>Shane Lowry</option>
-<option>Justin Thomas</option>
-<option>Min Woo Lee</option>
-<option>Patrick Cantlay</option>
-<option>Akshay Bhatia</option>
-<option>Corey Conners</option>
-<option>Jason Day</option>
-<option>Chris Gotterup</option>
-<option>Tyrrell Hatton</option>
-<option>Russell Henley</option>
-<option>Marco Penge</option>
-<option>Adam Scott</option>
-<option>Sepp Straka</option>
-<option>Sungjae Im</option>
-<option>Si Woo Kim</option>
-<option>Jacob Bridgeman</option>
-<option>Sam Burns</option>
-</select>
+      <p style="text-align:center;"><strong>Important:</strong> Please include your <u>full name</u> and the word <u>Masters</u> in the Revolut note.</p>
 
-<!-- GROUP C -->
-<label>Group C</label>
-<select name="groupC" required>
-<option value="">Select</option>
-<option>Ben Griffin</option>
-<option>Maverick McNealy</option>
-<option>J.J. Spaun</option>
-<option>Jake Knapp</option>
-<option>Rickie Fowler</option>
-<option>Will Zalatoris</option>
-<option>Nicolai Hojgaard</option>
-<option>Harris English</option>
-<option>Cameron Smith</option>
-<option>Pongsapak Laopakdee</option>
-<option>Max Homa</option>
-<option>Casey Jarvis</option>
-<option>Thomas Detry</option>
-<option>Rasmus Højgaard</option>
-<option>Keegan Bradley</option>
-<option>Wyndham Clark</option>
-<option>Nicolas Echavarria</option>
-<option>Sergio García</option>
-<option>Ryan Gerard</option>
-<option>Dustin Johnson</option>
-<option>Kurt Kitayama</option>
-<option>Andrew Novak</option>
-<option>Stephan Jaeger</option>
-</select>
+      <p class="deadline-note">Entries close at 12:00 midday on April 9th.</p>
+    </div>
 
-<!-- GROUP D -->
-<label>Group D</label>
-<select name="groupD" required>
-<option value="">Select</option>
-<option>Ryan Fox</option>
-<option>Tom McKibbin</option>
-<option>Aaron Rai</option>
-<option>Anthony Kim</option>
-<option>Max Greyserman</option>
-<option>Harry Hall</option>
-<option>Brian Harman</option>
-<option>Rasmus Neergaard-Petersen</option>
-<option>Alex Noren</option>
-<option>Carlos Ortiz</option>
-<option>Samuel Stevens</option>
-<option>Tom Hoge</option>
-<option>Christiaan Bezuidenhout</option>
-<option>Byeong-Hun An</option>
-<option>Matt McCarty</option>
-<option>Jayden Schaper</option>
-<option>Haotong Li</option>
-<option>John Keefer</option>
-<option>Phil Mickelson</option>
-<option>Aldrich Potgieter</option>
-<option>Sami Valimaki</option>
-<option>Lucas Glover</option>
-<option>Michael Kim</option>
-</select>
+    <div class="container">
+      <h2>Submit Your Entry</h2>
 
-<!-- GROUP E -->
-<label>Group E</label>
-<select name="groupE" required>
-<option value="">Select</option>
-<option>Webb Simpson</option>
-<option>Adam Hadwin</option>
-<option>Nick Dunlap</option>
-<option>Nick Taylor</option>
-<option>Tiger Woods</option>
-<option>Pierceson Coody</option>
-<option>Michael Brennan</option>
-<option>Kristoffer Reitan</option>
-<option>Davis Riley</option>
-<option>Charl Schwartzel</option>
-<option>Bubba Watson</option>
-<option>Brian Campbell</option>
-<option>Zach Johnson</option>
-<option>Danny Willett</option>
-<option>Michael La Sasso</option>
-<option>Ethan Fang (A)</option>
-<option>Jackson Herrington (A)</option>
-<option>Brandon Holtz (A)</option>
-<option>Naoyuki Kataoka</option>
-<option>Mason Howell (A)</option>
-<option>Fifa Laopakdee (A)</option>
-<option>Ángel Cabrera</option>
-<option>Fred Couples</option>
-<option>Mateo Pulcini (A)</option>
-<option>Vijay Singh</option>
-<option>Mike Weir</option>
-<option>José María Olazábal</option>
-</select>
+      <form id="entryForm">
+        <label for="name">Full Name</label>
+        <input type="text" name="name" id="name" required>
 
-<button type="submit">Submit</button>
+        <label for="email">Email Address</label>
+        <input type="email" name="email" id="email" required>
 
-</form>
-</div>
-</div>
+        <label for="groupA">Group A</label>
+        <select name="groupA" id="groupA" required>
+          <option value="">-- Select a golfer --</option>
+          <option>Scottie Scheffler</option>
+          <option>Bryson DeChambeau</option>
+          <option>Rory McIlroy</option>
+          <option>Jon Rahm</option>
+          <option>Ludvig Åberg</option>
+          <option>Xander Schauffele</option>
+          <option>Matt Fitzpatrick</option>
+          <option>Tommy Fleetwood</option>
+          <option>Cameron Young</option>
+          <option>Collin Morikawa</option>
+          <option>Justin Rose</option>
+          <option>Hideki Matsuyama</option>
+          <option>Brooks Koepka</option>
+          <option>Patrick Reed</option>
+          <option>Viktor Hovland</option>
+          <option>Robert MacIntyre</option>
+        </select>
 
-<div id="leaderboardTab" style="display:none;">
-<div class="container">
-<h2>Leaderboard</h2>
-</div>
-</div>
+        <label for="groupB">Group B</label>
+        <select name="groupB" id="groupB" required>
+          <option value="">-- Select a golfer --</option>
+          <option>Jordan Spieth</option>
+          <option>Shane Lowry</option>
+          <option>Justin Thomas</option>
+          <option>Min Woo Lee</option>
+          <option>Patrick Cantlay</option>
+          <option>Akshay Bhatia</option>
+          <option>Corey Conners</option>
+          <option>Jason Day</option>
+          <option>Chris Gotterup</option>
+          <option>Tyrrell Hatton</option>
+          <option>Russell Henley</option>
+          <option>Marco Penge</option>
+          <option>Adam Scott</option>
+          <option>Sepp Straka</option>
+          <option>Sungjae Im</option>
+          <option>Si Woo Kim</option>
+          <option>Jacob Bridgeman</option>
+          <option>Sam Burns</option>
+        </select>
 
-<script>
-function showTab(tab){
-  document.getElementById('entryTab').style.display = tab==='entry'?'block':'none';
-  document.getElementById('leaderboardTab').style.display = tab==='leaderboard'?'block':'none';
-}
+        <label for="groupC">Group C</label>
+        <select name="groupC" id="groupC" required>
+          <option value="">-- Select a golfer --</option>
+          <option>Ben Griffin</option>
+          <option>Maverick McNealy</option>
+          <option>J.J. Spaun</option>
+          <option>Jake Knapp</option>
+          <option>Rickie Fowler</option>
+          <option>Will Zalatoris</option>
+          <option>Nicolai Hojgaard</option>
+          <option>Harris English</option>
+          <option>Cameron Smith</option>
+          <option>Pongsapak Laopakdee</option>
+          <option>Max Homa</option>
+          <option>Casey Jarvis</option>
+          <option>Thomas Detry</option>
+          <option>Rasmus Højgaard</option>
+          <option>Keegan Bradley</option>
+          <option>Wyndham Clark</option>
+          <option>Nicolas Echavarria</option>
+          <option>Sergio García</option>
+          <option>Ryan Gerard</option>
+          <option>Dustin Johnson</option>
+          <option>Kurt Kitayama</option>
+          <option>Andrew Novak</option>
+          <option>Stephan Jaeger</option>
+        </select>
 
-document.getElementById("entryForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  fetch("YOUR_GOOGLE_SCRIPT_URL",{
-    method:"POST",
-    body:new FormData(e.target)
-  }).then(()=>window.location.href="thank-you.html");
-});
+        <label for="groupD">Group D</label>
+        <select name="groupD" id="groupD" required>
+          <option value="">-- Select a golfer --</option>
+          <option>Ryan Fox</option>
+          <option>Tom McKibbin</option>
+          <option>Aaron Rai</option>
+          <option>Anthony Kim</option>
+          <option>Max Greyserman</option>
+          <option>Harry Hall</option>
+          <option>Brian Harman</option>
+          <option>Rasmus Neergaard-Petersen</option>
+          <option>Alex Noren</option>
+          <option>Carlos Ortiz</option>
+          <option>Samuel Stevens</option>
+          <option>Tom Hoge</option>
+          <option>Christiaan Bezuidenhout</option>
+          <option>Byeong-Hun An</option>
+          <option>Matt McCarty</option>
+          <option>Jayden Schaper</option>
+          <option>Haotong Li</option>
+          <option>John Keefer</option>
+          <option>Phil Mickelson</option>
+          <option>Aldrich Potgieter</option>
+          <option>Sami Valimaki</option>
+          <option>Lucas Glover</option>
+          <option>Michael Kim</option>
+        </select>
 
-const deadline = new Date("April 9, 2026 12:00:00 GMT+0200");
+        <label for="groupE">Group E</label>
+        <select name="groupE" id="groupE" required>
+          <option value="">-- Select a golfer --</option>
+          <option>Webb Simpson</option>
+          <option>Adam Hadwin</option>
+          <option>Nick Dunlap</option>
+          <option>Nick Taylor</option>
+          <option>Tiger Woods</option>
+          <option>Pierceson Coody</option>
+          <option>Michael Brennan</option>
+          <option>Kristoffer Reitan</option>
+          <option>Davis Riley</option>
+          <option>Charl Schwartzel</option>
+          <option>Bubba Watson</option>
+          <option>Brian Campbell</option>
+          <option>Zach Johnson</option>
+          <option>Danny Willett</option>
+          <option>Michael La Sasso</option>
+          <option>Ethan Fang (A)</option>
+          <option>Jackson Herrington (A)</option>
+          <option>Brandon Holtz (A)</option>
+          <option>Naoyuki Kataoka</option>
+          <option>Mason Howell (A)</option>
+          <option>Fifa Laopakdee (A)</option>
+          <option>Ángel Cabrera</option>
+          <option>Fred Couples</option>
+          <option>Mateo Pulcini (A)</option>
+          <option>Vijay Singh</option>
+          <option>Mike Weir</option>
+          <option>José María Olazábal</option>
+        </select>
 
-function updateCountdown(){
-  const now = new Date().getTime();
-  const t = deadline - now;
+        <button type="submit">Submit Entry</button>
+      </form>
+    </div>
+  </div>
 
-  if(t<=0){
-    document.getElementById("countdown").innerHTML="Entries Closed";
-    return;
-  }
+  <div id="leaderboardTab" style="display:none;">
+    <div class="container">
+      <h2>Leaderboard</h2>
+      <p class="leaderboard-note">Leaderboard coming here once connected to the published sheet.</p>
+    </div>
+  </div>
 
-  const d=Math.floor(t/(1000*60*60*24));
-  const h=Math.floor((t%(1000*60*60*24))/(1000*60*60));
-  const m=Math.floor((t%(1000*60*60))/(1000*60));
+  <script>
+    function showTab(tab) {
+      document.getElementById('entryTab').style.display = tab === 'entry' ? 'block' : 'none';
+      document.getElementById('leaderboardTab').style.display = tab === 'leaderboard' ? 'block' : 'none';
+    }
 
-  document.getElementById("countdown").innerHTML=
-  "Entries close in: "+d+"d "+h+"h "+m+"m";
-}
+    document.getElementById("entryForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-setInterval(updateCountdown,1000);
-updateCountdown();
-</script>
+      fetch("YOUR_GOOGLE_SCRIPT_URL", {
+        method: "POST",
+        body: new FormData(e.target)
+      }).then(() => {
+        window.location.href = "thank-you.html";
+      });
+    });
+
+    const deadline = new Date("April 9, 2026 12:00:00 GMT+0200");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const t = deadline - now;
+
+      if (t <= 0) {
+        document.getElementById("countdown").innerHTML = "Entries Closed";
+        return;
+      }
+
+      const d = Math.floor(t / (1000 * 60 * 60 * 24));
+      const h = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+
+      document.getElementById("countdown").innerHTML =
+        "Entries close in: " + d + "d " + h + "h " + m + "m";
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
 
 </body>
 </html>
