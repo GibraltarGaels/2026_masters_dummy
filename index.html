@@ -66,29 +66,39 @@ tr:nth-child(even){background:#f5f5f5;}
 <div class="container">
 <h2>How It Works</h2>
 
-<p><b>1.</b> Pick one golfer from each group.</p>
+<p><strong>1.</strong> Choose <strong>one golfer from each of the five groups</strong> below.</p>
 
+<p><strong>2.</strong> Your golfers will score points based on where they finish within their group:</p>
 <ul>
-<li>1st: 5 pts</li>
-<li>2nd: 4 pts</li>
-<li>3rd: 3 pts</li>
-<li>4th: 2 pts</li>
-<li>5th: 1 pt</li>
-<li>Missed cut: -1</li>
+  <li>1st in group: 5 points</li>
+  <li>2nd in group: 4 points</li>
+  <li>3rd in group: 3 points</li>
+  <li>4th in group: 2 points</li>
+  <li>5th in group: 1 point</li>
+  <li>Missed cut: -1 point</li>
 </ul>
 
-<p><b>Bonus:</b></p>
+<p><strong>3.</strong> Bonus points are also available:</p>
 <ul>
-<li>+5 Winner</li>
-<li>+2 Round 1 Leader</li>
+  <li>+5 points if your golfer wins the Masters</li>
+  <li>+2 points if your golfer is the tournament leader after Round 1</li>
 </ul>
 
-<p><b>Entry €10</b></p>
-<p><b>Entries close April 9th at 12:00</b></p>
+<p><strong>4.</strong> If players tie for a position within a group, dead-heat scoring applies. The points for the tied positions are added together and divided equally between those players.</p>
 
-<p style="text-align:center;">
-<a href="https://revolut.me/killiavb3" target="_blank"><b>💸 Pay here</b></a>
-</p>
+<p><em>Example:</em> if 3 players tie for 2nd place, the points for 2nd, 3rd and 4th are added together (4 + 3 + 2 = 9), so each player receives 3 points.</p>
+
+<p><strong>5.</strong> Entry is <strong>€10</strong>. The winner takes the full prize pool, with tied winners splitting the pot equally.</p>
+
+<p><strong>6.</strong> To enter, send your payment by Revolut and then submit your picks using the form below.</p>
+
+<div class="payment-link">
+  <a href="https://revolut.me/killiavb3" target="_blank">💸 revolut.me/killiavb3</a>
+</div>
+
+<p style="text-align:center;"><strong>Important:</strong> Please include your <u>full name</u> and the word <u>Masters</u> in the Revolut note.</p>
+
+<p class="deadline-note">Entries close at 12:00 midday on April 9th.</p>
 </div>
 
 <div class="container">
@@ -100,7 +110,6 @@ tr:nth-child(even){background:#f5f5f5;}
 <label>Email</label>
 <input type="email" name="email" required>
 
-<!-- GROUP A -->
 <label>Group A</label>
 <select name="groupA" required>
 <option value="">Select</option>
@@ -122,7 +131,6 @@ tr:nth-child(even){background:#f5f5f5;}
 <option>Robert MacIntyre</option>
 </select>
 
-<!-- GROUP B -->
 <label>Group B</label>
 <select name="groupB" required>
 <option value="">Select</option>
@@ -146,7 +154,6 @@ tr:nth-child(even){background:#f5f5f5;}
 <option>Sam Burns</option>
 </select>
 
-<!-- GROUP C -->
 <label>Group C</label>
 <select name="groupC" required>
 <option value="">Select</option>
@@ -175,7 +182,6 @@ tr:nth-child(even){background:#f5f5f5;}
 <option>Stephan Jaeger</option>
 </select>
 
-<!-- GROUP D -->
 <label>Group D</label>
 <select name="groupD" required>
 <option value="">Select</option>
@@ -204,7 +210,6 @@ tr:nth-child(even){background:#f5f5f5;}
 <option>Michael Kim</option>
 </select>
 
-<!-- GROUP E -->
 <label>Group E</label>
 <select name="groupE" required>
 <option value="">Select</option>
@@ -257,12 +262,11 @@ document.getElementById('leaderboardTab').style.display = tab==='leaderboard'?'b
 if(tab==="leaderboard"){loadLeaderboard();}
 }
 
-// FORM SUBMIT (FIXED)
 document.getElementById("entryForm").addEventListener("submit", function(e){
 e.preventDefault();
 
 fetch("https://script.google.com/macros/s/AKfycbyLK1O15iIFUX_D1NNj4Z7GOt2LJtD0pmGGcxzvymBvSljJSqYFLqxz3KISelY07WdErA/exec", {
-    method: "POST",
+method:"POST",
 body:new FormData(e.target),
 mode:"no-cors"
 })
@@ -270,7 +274,6 @@ mode:"no-cors"
 .catch(()=>alert("Submission failed. Try again."));
 });
 
-// LEADERBOARD
 async function loadLeaderboard(){
 const url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQtmHxiXLA6_CNu9E8DDYMsWSo1Es4nJ5Jk4-KGM08-OiTYxeG0LNDa7UmRn5Azon2y1iDVowv9--u7/pub?gid=1858004008&single=true&output=csv";
 const res=await fetch(url);
@@ -295,7 +298,6 @@ html+="</table>";
 document.getElementById("leaderboard").innerHTML=html;
 }
 
-// COUNTDOWN
 const deadline=new Date("April 9, 2026 12:00:00 GMT+0200");
 setInterval(()=>{
 const t=deadline-new Date();
