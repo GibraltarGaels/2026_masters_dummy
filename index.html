@@ -1,509 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gibraltar Gaels Masters 2026 Fundraiser</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gibraltar Gaels Masters 2026 Fundraiser</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+body { font-family: Arial; padding: 2rem; background:#f9f9f9; }
+h1,h2 { text-align:center; color:#c00000; }
 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 2rem;
-      background-color: #f9f9f9;
-      color: #222;
-    }
+.container {
+  max-width:1000px;
+  margin:2rem auto;
+  background:#fff;
+  padding:2rem;
+  border:3px solid #c00000;
+  border-radius:20px;
+}
 
-    h1, h2 {
-      text-align: center;
-      color: #c00000;
-    }
+label { display:block; margin-top:1rem; font-weight:bold; }
+select,input,button { width:100%; padding:10px; margin-top:5px; }
 
-    nav {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
+button {
+  background:#c00000;
+  color:white;
+  border:none;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:1.5rem;
+}
 
-    nav button {
-      margin: 0 10px;
-      padding: 10px 20px;
-      background-color: #c00000;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+nav { text-align:center; margin-bottom:2rem; }
+nav button {
+  margin:0 10px;
+  padding:10px 20px;
+  background:#c00000;
+  color:white;
+  border:none;
+  border-radius:5px;
+}
 
-    nav button:hover {
-      background-color: #a00000;
-    }
+#countdown { text-align:center; font-weight:bold; color:#c00000; }
 
-    #countdown {
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-      color: #c00000;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 2rem auto;
-      background: #fff;
-      padding: 2rem;
-      border: 3px solid #c00000;
-      border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-    }
-
-    .payment-link {
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin: 1rem 0;
-    }
-
-    .payment-link a {
-      color: #c00000;
-      text-decoration: none;
-    }
-
-    .deadline-note {
-      text-align: center;
-      font-weight: bold;
-      color: #c00000;
-      margin-top: 1rem;
-    }
-
-    label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
-
-    input, select, button[type="submit"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    button[type="submit"] {
-      background-color: #c00000;
-      color: white;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      margin-top: 1.5rem;
-    }
-
-    button[type="submit"]:hover {
-      background-color: #a00000;
-    }
-
-    .leaderboard-wrap {
-      overflow-x: auto;
-    }
-
-    .leaderboard-table {
-      width: 100%;
-      min-width: 900px;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-
-    .leaderboard-table th {
-      background-color: #c00000;
-      color: white;
-      padding: 10px;
-      text-align: left;
-    }
-
-    .leaderboard-table td {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .leaderboard-table tr:nth-child(even) {
-      background-color: #f7f7f7;
-    }
-
-    .leaderboard-note {
-      text-align: center;
-      color: #666;
-      margin-top: 1rem;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 1rem;
-      }
-
-      .container {
-        padding: 1.25rem;
-      }
-
-      nav button {
-        display: block;
-        width: 100%;
-        margin: 0.5rem 0;
-      }
-    }
-  </style>
+table { width:100%; border-collapse:collapse; margin-top:1rem; }
+th { background:#c00000; color:white; padding:10px; }
+td { padding:10px; border-bottom:1px solid #eee; }
+tr:nth-child(even){background:#f5f5f5;}
+</style>
 </head>
+
 <body>
 
-  <nav>
-    <button onclick="showTab('entry')">To Enter</button>
-    <button onclick="showTab('leaderboard')">Leaderboard</button>
-  </nav>
+<nav>
+<button onclick="showTab('entry')">To Enter</button>
+<button onclick="showTab('leaderboard')">Leaderboard</button>
+</nav>
 
-  <div id="countdown"></div>
+<div id="countdown"></div>
 
-  <div id="entryTab">
-    <h1>Gibraltar Gaels Masters 2026 Fundraiser</h1>
+<!-- ENTRY -->
+<div id="entryTab">
 
-    <div class="container">
-      <h2>How It Works</h2>
+<h1>Gibraltar Gaels Masters 2026 Fundraiser</h1>
 
-      <p><strong>1.</strong> Choose <strong>one golfer from each of the five groups</strong> below.</p>
+<div class="container">
+<h2>How It Works</h2>
 
-      <p><strong>2.</strong> Your golfers score points based on where they finish within their group:</p>
-      <ul>
-        <li>1st in group: 5 points</li>
-        <li>2nd in group: 4 points</li>
-        <li>3rd in group: 3 points</li>
-        <li>4th in group: 2 points</li>
-        <li>5th in group: 1 point</li>
-        <li>Missed cut: -1 point</li>
-      </ul>
+<p><b>1.</b> Pick one golfer from each group.</p>
 
-      <p><strong>3.</strong> Bonus points are available for:</p>
-      <ul>
-        <li>+5 points if your golfer wins the Masters</li>
-        <li>+2 points if your golfer is the tournament leader after Round 1</li>
-      </ul>
+<ul>
+<li>1st: 5 pts</li>
+<li>2nd: 4 pts</li>
+<li>3rd: 3 pts</li>
+<li>4th: 2 pts</li>
+<li>5th: 1 pt</li>
+<li>Missed cut: -1</li>
+</ul>
 
-      <p><strong>4.</strong> If players tie for a position within a group, dead-heat scoring applies. The points for the tied positions are added together and divided equally between those tied players.</p>
+<p><b>Bonus:</b></p>
+<ul>
+<li>+5 Winner</li>
+<li>+2 Round 1 Leader</li>
+</ul>
 
-      <p><em>Example:</em> if 3 players tie for 2nd place, the points for 2nd, 3rd and 4th are added together (4 + 3 + 2 = 9), so each player receives 3 points.</p>
+<p><b>Entry €10</b></p>
+<p><b>Entries close April 9th at 12:00</b></p>
 
-      <p><strong>5.</strong> Entry is <strong>€10</strong>. Winner takes all, with tied winners splitting the prize pool equally.</p>
+<p style="text-align:center;">
+<a href="https://revolut.me/killiavb3" target="_blank"><b>💸 Pay here</b></a>
+</p>
+</div>
 
-      <p><strong>6.</strong> To enter, send your payment by Revolut and then submit your picks using the form below.</p>
+<div class="container">
+<form id="entryForm">
 
-      <div class="payment-link">
-        <a href="https://revolut.me/killiavb3" target="_blank">💸 revolut.me/killiavb3</a>
-      </div>
+<label>Name</label>
+<input type="text" name="name" required>
 
-      <p style="text-align:center;"><strong>Important:</strong> Please include your <u>full name</u> and the word <u>Masters</u> in the Revolut note.</p>
+<label>Email</label>
+<input type="email" name="email" required>
 
-      <p class="deadline-note">Entries close at 12:00 midday on April 9th.</p>
-    </div>
+<!-- GROUP A -->
+<label>Group A</label>
+<select name="groupA" required>
+<option value="">Select</option>
+<option>Scottie Scheffler</option>
+<option>Bryson DeChambeau</option>
+<option>Rory McIlroy</option>
+<option>Jon Rahm</option>
+<option>Ludvig Åberg</option>
+<option>Xander Schauffele</option>
+<option>Matt Fitzpatrick</option>
+<option>Tommy Fleetwood</option>
+<option>Cameron Young</option>
+<option>Collin Morikawa</option>
+<option>Justin Rose</option>
+<option>Hideki Matsuyama</option>
+<option>Brooks Koepka</option>
+<option>Patrick Reed</option>
+<option>Viktor Hovland</option>
+<option>Robert MacIntyre</option>
+</select>
 
-    <div class="container">
-      <h2>Submit Your Entry</h2>
+<!-- GROUP B -->
+<label>Group B</label>
+<select name="groupB" required>
+<option value="">Select</option>
+<option>Jordan Spieth</option>
+<option>Shane Lowry</option>
+<option>Justin Thomas</option>
+<option>Min Woo Lee</option>
+<option>Patrick Cantlay</option>
+<option>Akshay Bhatia</option>
+<option>Corey Conners</option>
+<option>Jason Day</option>
+<option>Chris Gotterup</option>
+<option>Tyrrell Hatton</option>
+<option>Russell Henley</option>
+<option>Marco Penge</option>
+<option>Adam Scott</option>
+<option>Sepp Straka</option>
+<option>Sungjae Im</option>
+<option>Si Woo Kim</option>
+<option>Jacob Bridgeman</option>
+<option>Sam Burns</option>
+</select>
 
-      <form id="entryForm">
-        <label for="name">Full Name</label>
-        <input type="text" name="name" id="name" required>
+<!-- GROUP C -->
+<label>Group C</label>
+<select name="groupC" required>
+<option value="">Select</option>
+<option>Ben Griffin</option>
+<option>Maverick McNealy</option>
+<option>J.J. Spaun</option>
+<option>Jake Knapp</option>
+<option>Rickie Fowler</option>
+<option>Will Zalatoris</option>
+<option>Nicolai Hojgaard</option>
+<option>Harris English</option>
+<option>Cameron Smith</option>
+<option>Pongsapak Laopakdee</option>
+<option>Max Homa</option>
+<option>Casey Jarvis</option>
+<option>Thomas Detry</option>
+<option>Rasmus Højgaard</option>
+<option>Keegan Bradley</option>
+<option>Wyndham Clark</option>
+<option>Nicolas Echavarria</option>
+<option>Sergio García</option>
+<option>Ryan Gerard</option>
+<option>Dustin Johnson</option>
+<option>Kurt Kitayama</option>
+<option>Andrew Novak</option>
+<option>Stephan Jaeger</option>
+</select>
 
-        <label for="email">Email Address</label>
-        <input type="email" name="email" id="email" required>
+<!-- GROUP D -->
+<label>Group D</label>
+<select name="groupD" required>
+<option value="">Select</option>
+<option>Ryan Fox</option>
+<option>Tom McKibbin</option>
+<option>Aaron Rai</option>
+<option>Anthony Kim</option>
+<option>Max Greyserman</option>
+<option>Harry Hall</option>
+<option>Brian Harman</option>
+<option>Rasmus Neergaard-Petersen</option>
+<option>Alex Noren</option>
+<option>Carlos Ortiz</option>
+<option>Samuel Stevens</option>
+<option>Tom Hoge</option>
+<option>Christiaan Bezuidenhout</option>
+<option>Byeong-Hun An</option>
+<option>Matt McCarty</option>
+<option>Jayden Schaper</option>
+<option>Haotong Li</option>
+<option>John Keefer</option>
+<option>Phil Mickelson</option>
+<option>Aldrich Potgieter</option>
+<option>Sami Valimaki</option>
+<option>Lucas Glover</option>
+<option>Michael Kim</option>
+</select>
 
-        <label for="groupA">Group A</label>
-        <select name="groupA" id="groupA" required>
-          <option value="">-- Select a golfer --</option>
-          <option>Scottie Scheffler</option>
-          <option>Bryson DeChambeau</option>
-          <option>Rory McIlroy</option>
-          <option>Jon Rahm</option>
-          <option>Ludvig Åberg</option>
-          <option>Xander Schauffele</option>
-          <option>Matt Fitzpatrick</option>
-          <option>Tommy Fleetwood</option>
-          <option>Cameron Young</option>
-          <option>Collin Morikawa</option>
-          <option>Justin Rose</option>
-          <option>Hideki Matsuyama</option>
-          <option>Brooks Koepka</option>
-          <option>Patrick Reed</option>
-          <option>Viktor Hovland</option>
-          <option>Robert MacIntyre</option>
-        </select>
+<!-- GROUP E -->
+<label>Group E</label>
+<select name="groupE" required>
+<option value="">Select</option>
+<option>Webb Simpson</option>
+<option>Adam Hadwin</option>
+<option>Nick Dunlap</option>
+<option>Nick Taylor</option>
+<option>Pierceson Coody</option>
+<option>Michael Brennan</option>
+<option>Kristoffer Reitan</option>
+<option>Davis Riley</option>
+<option>Charl Schwartzel</option>
+<option>Bubba Watson</option>
+<option>Brian Campbell</option>
+<option>Zach Johnson</option>
+<option>Danny Willett</option>
+<option>Michael La Sasso</option>
+<option>Ethan Fang (A)</option>
+<option>Jackson Herrington (A)</option>
+<option>Naoyuki Kataoka</option>
+<option>Brandon Holtz</option>
+<option>Fifa Laopakdee (A)</option>
+<option>Mason Howell</option>
+<option>Ángel Cabrera</option>
+<option>Fred Couples</option>
+<option>Vijay Singh</option>
+<option>Mike Weir</option>
+<option>Mateo Pulcini</option>
+<option>José María Olazábal</option>
+</select>
 
-        <label for="groupB">Group B</label>
-        <select name="groupB" id="groupB" required>
-          <option value="">-- Select a golfer --</option>
-          <option>Jordan Spieth</option>
-          <option>Shane Lowry</option>
-          <option>Justin Thomas</option>
-          <option>Min Woo Lee</option>
-          <option>Patrick Cantlay</option>
-          <option>Akshay Bhatia</option>
-          <option>Corey Conners</option>
-          <option>Jason Day</option>
-          <option>Chris Gotterup</option>
-          <option>Tyrrell Hatton</option>
-          <option>Russell Henley</option>
-          <option>Marco Penge</option>
-          <option>Adam Scott</option>
-          <option>Sepp Straka</option>
-          <option>Sungjae Im</option>
-          <option>Si Woo Kim</option>
-          <option>Jacob Bridgeman</option>
-          <option>Sam Burns</option>
-        </select>
+<button type="submit" id="submitBtn">Submit Entry</button>
 
-        <label for="groupC">Group C</label>
-        <select name="groupC" id="groupC" required>
-          <option value="">-- Select a golfer --</option>
-          <option>Ben Griffin</option>
-          <option>Maverick McNealy</option>
-          <option>J.J. Spaun</option>
-          <option>Jake Knapp</option>
-          <option>Rickie Fowler</option>
-          <option>Will Zalatoris</option>
-          <option>Nicolai Hojgaard</option>
-          <option>Harris English</option>
-          <option>Cameron Smith</option>
-          <option>Pongsapak Laopakdee</option>
-          <option>Max Homa</option>
-          <option>Casey Jarvis</option>
-          <option>Thomas Detry</option>
-          <option>Rasmus Højgaard</option>
-          <option>Keegan Bradley</option>
-          <option>Wyndham Clark</option>
-          <option>Nicolas Echavarria</option>
-          <option>Sergio García</option>
-          <option>Ryan Gerard</option>
-          <option>Dustin Johnson</option>
-          <option>Kurt Kitayama</option>
-          <option>Andrew Novak</option>
-          <option>Stephan Jaeger</option>
-        </select>
+</form>
+</div>
+</div>
 
-        <label for="groupD">Group D</label>
-        <select name="groupD" id="groupD" required>
-          <option value="">-- Select a golfer --</option>
-          <option>Ryan Fox</option>
-          <option>Tom McKibbin</option>
-          <option>Aaron Rai</option>
-          <option>Anthony Kim</option>
-          <option>Max Greyserman</option>
-          <option>Harry Hall</option>
-          <option>Brian Harman</option>
-          <option>Rasmus Neergaard-Petersen</option>
-          <option>Alex Noren</option>
-          <option>Carlos Ortiz</option>
-          <option>Samuel Stevens</option>
-          <option>Tom Hoge</option>
-          <option>Christiaan Bezuidenhout</option>
-          <option>Byeong-Hun An</option>
-          <option>Matt McCarty</option>
-          <option>Jayden Schaper</option>
-          <option>Haotong Li</option>
-          <option>John Keefer</option>
-          <option>Phil Mickelson</option>
-          <option>Aldrich Potgieter</option>
-          <option>Sami Valimaki</option>
-          <option>Lucas Glover</option>
-          <option>Michael Kim</option>
-        </select>
+<!-- LEADERBOARD -->
+<div id="leaderboardTab" style="display:none;">
+<div class="container">
+<h2>Leaderboard</h2>
+<div id="leaderboard">Loading...</div>
+</div>
+</div>
 
-        <label for="groupE">Group E</label>
-        <select name="groupE" id="groupE" required>
-          <option value="">-- Select a golfer --</option>
-          <option>Webb Simpson</option>
-          <option>Adam Hadwin</option>
-          <option>Nick Dunlap</option>
-          <option>Nick Taylor</option>
-          <option>Pierceson Coody</option>
-          <option>Michael Brennan</option>
-          <option>Kristoffer Reitan</option>
-          <option>Davis Riley</option>
-          <option>Charl Schwartzel</option>
-          <option>Bubba Watson</option>
-          <option>Brian Campbell</option>
-          <option>Zach Johnson</option>
-          <option>Danny Willett</option>
-          <option>Michael La Sasso</option>
-          <option>Ethan Fang (A)</option>
-          <option>Jackson Herrington (A)</option>
-          <option>Naoyuki Kataoka</option>
-          <option>Brandon Holtz</option>
-          <option>Fifa Laopakdee (A)</option>
-          <option>Mason Howell</option>
-          <option>Ángel Cabrera</option>
-          <option>Fred Couples</option>
-          <option>Vijay Singh</option>
-          <option>Mike Weir</option>
-          <option>Mateo Pulcini</option>
-          <option>José María Olazábal</option>
-        </select>
+<script>
+function showTab(tab){
+document.getElementById('entryTab').style.display = tab==='entry'?'block':'none';
+document.getElementById('leaderboardTab').style.display = tab==='leaderboard'?'block':'none';
+if(tab==="leaderboard"){loadLeaderboard();}
+}
 
-        <button type="submit">Submit Entry</button>
-      </form>
-    </div>
-  </div>
+// FORM SUBMIT (FIXED)
+document.getElementById("entryForm").addEventListener("submit", function(e){
+e.preventDefault();
 
-  <div id="leaderboardTab" style="display:none;">
-    <div class="container">
-      <h2>Leaderboard</h2>
-      <div class="leaderboard-wrap">
-        <div id="leaderboard">Loading leaderboard...</div>
-      </div>
-    </div>
-  </div>
+fetch("https://script.google.com/macros/s/AKfycbyLK1O15iIFUX_D1NNj4Z7GOt2LJtD0pmGGcxzvymBvSljJSqYFLqxz3KISelY07WdErA/exec", {
+method:"POST",
+body:new FormData(e.target),
+mode:"no-cors"
+})
+.then(()=>window.location.href="thank-you.html")
+.catch(()=>alert("Submission failed. Try again."));
+});
 
-  <script>
-    let leaderboardLoaded = false;
+// LEADERBOARD
+async function loadLeaderboard(){
+const url="https://docs.google.com/spreadsheets/d/e/2PACX-1vQtmHxiXLA6_CNu9E8DDYMsWSo1Es4nJ5Jk4-KGM08-OiTYxeG0LNDa7UmRn5Azon2y1iDVowv9--u7/pub?gid=1858004008&single=true&output=csv";
+const res=await fetch(url);
+const text=await res.text();
+const rows=text.trim().split("\n").map(r=>r.split(","));
+const data=rows.slice(1);
 
-    function parseCSVLine(line) {
-      const result = [];
-      let current = "";
-      let insideQuotes = false;
+data.sort((a,b)=>b[11]-a[11]);
 
-      for (let i = 0; i < line.length; i++) {
-        const char = line[i];
-        const nextChar = line[i + 1];
+let html="<table><tr><th>Rank</th><th>Name</th><th>Total</th></tr>";
 
-        if (char === '"') {
-          if (insideQuotes && nextChar === '"') {
-            current += '"';
-            i++;
-          } else {
-            insideQuotes = !insideQuotes;
-          }
-        } else if (char === ',' && !insideQuotes) {
-          result.push(current);
-          current = "";
-        } else {
-          current += char;
-        }
-      }
+data.forEach((r,i)=>{
+let medal="";
+if(i==0)medal="🥇 ";
+if(i==1)medal="🥈 ";
+if(i==2)medal="🥉 ";
 
-      result.push(current);
-      return result;
-    }
+html+=`<tr><td>${i+1}</td><td>${medal}${r[0]}</td><td>${r[11]}</td></tr>`;
+});
 
-    async function loadLeaderboard() {
-      const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQtmHxiXLA6_CNu9E8DDYMsWSo1Es4nJ5Jk4-KGM08-OiTYxeG0LNDa7UmRn5Azon2y1iDVowv9--u7/pub?gid=1858004008&single=true&output=csv";
+html+="</table>";
+document.getElementById("leaderboard").innerHTML=html;
+}
 
-      try {
-        const response = await fetch(url);
-        const data = await response.text();
-        const rows = data.trim().split("\n").map(parseCSVLine);
-
-        const dataRows = rows.slice(1).filter(row => row.length >= 12);
-        dataRows.sort((a, b) => Number(b[11] || 0) - Number(a[11] || 0));
-
-        let html = "<table class='leaderboard-table'>";
-        html += "<thead><tr>";
-        html += "<th>Rank</th>";
-        html += "<th>Name</th>";
-        html += "<th>Group A</th>";
-        html += "<th>Group B</th>";
-        html += "<th>Group C</th>";
-        html += "<th>Group D</th>";
-        html += "<th>Group E</th>";
-        html += "<th>Total</th>";
-        html += "</tr></thead><tbody>";
-
-        dataRows.forEach((row, i) => {
-          const name = row[0] || "";
-          const a = row[1] || "";
-          const b = row[2] || "";
-          const c = row[3] || "";
-          const d = row[4] || "";
-          const e = row[5] || "";
-          const total = row[11] || "0";
-
-          let medal = "";
-          if (i === 0) medal = "🥇 ";
-          else if (i === 1) medal = "🥈 ";
-          else if (i === 2) medal = "🥉 ";
-
-          html += "<tr>";
-          html += "<td><strong>" + (i + 1) + "</strong></td>";
-          html += "<td><strong>" + medal + name + "</strong></td>";
-          html += "<td>" + a + "</td>";
-          html += "<td>" + b + "</td>";
-          html += "<td>" + c + "</td>";
-          html += "<td>" + d + "</td>";
-          html += "<td>" + e + "</td>";
-          html += "<td><strong>" + total + "</strong></td>";
-          html += "</tr>";
-        });
-
-        html += "</tbody></table>";
-        document.getElementById("leaderboard").innerHTML = html;
-      } catch (error) {
-        document.getElementById("leaderboard").innerHTML = "Unable to load leaderboard right now.";
-        console.error("Leaderboard error:", error);
-      }
-    }
-
-    function showTab(tab) {
-      document.getElementById("entryTab").style.display = tab === "entry" ? "block" : "none";
-      document.getElementById("leaderboardTab").style.display = tab === "leaderboard" ? "block" : "none";
-
-      if (tab === "leaderboard" && !leaderboardLoaded) {
-        loadLeaderboard();
-        leaderboardLoaded = true;
-      }
-    }
-
-    document.getElementById("entryForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      fetch("https://script.google.com/macros/s/AKfycbyLK1O15iIFUX_D1NNj4Z7GOt2LJtD0pmGGcxzvymBvSljJSqYFLqxz3KISelY07WdErA/exec", {
-        method: "POST",
-        body: new FormData(e.target)
-      })
-      .then(response => {
-        if (response.ok) {
-          window.location.href = "thank-you.html";
-        } else {
-          alert("There was an issue submitting your entry. Please try again later.");
-        }
-      })
-      .catch(error => {
-        console.error("Submission error:", error);
-        alert("Submission failed. Please try again later.");
-      });
-    });
-
-    const deadline = new Date("April 9, 2026 12:00:00 GMT+0200");
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const t = deadline - now;
-
-      if (t <= 0) {
-        document.getElementById("countdown").innerHTML = "✅ Entries are now closed.";
-        return;
-      }
-
-      const d = Math.floor(t / (1000 * 60 * 60 * 24));
-      const h = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((t % (1000 * 60)) / 1000);
-
-      document.getElementById("countdown").innerHTML =
-        "⏳ Entries close in: " + d + "d " + h + "h " + m + "m " + s + "s";
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
+// COUNTDOWN
+const deadline=new Date("April 9, 2026 12:00:00 GMT+0200");
+setInterval(()=>{
+const t=deadline-new Date();
+if(t<=0){
+document.getElementById("countdown").innerHTML="Entries Closed";
+return;
+}
+const d=Math.floor(t/(1000*60*60*24));
+const h=Math.floor((t%(1000*60*60*24))/(1000*60*60));
+const m=Math.floor((t%(1000*60*60))/(1000*60));
+document.getElementById("countdown").innerHTML=`Entries close in: ${d}d ${h}h ${m}m`;
+},1000);
+</script>
 
 </body>
 </html>
