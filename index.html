@@ -39,6 +39,10 @@
       font-weight: bold;
     }
 
+    nav button:hover {
+      background-color: #a00000;
+    }
+
     #countdown {
       text-align: center;
       font-weight: bold;
@@ -48,7 +52,7 @@
     }
 
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 2rem auto;
       background: #fff;
       padding: 2rem;
@@ -100,14 +104,41 @@
       margin-top: 1.5rem;
     }
 
-    button[type="submit"]:hover,
-    nav button:hover {
+    button[type="submit"]:hover {
       background-color: #a00000;
+    }
+
+    .leaderboard-wrap {
+      overflow-x: auto;
+    }
+
+    .leaderboard-table {
+      width: 100%;
+      min-width: 900px;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .leaderboard-table th {
+      background-color: #c00000;
+      color: white;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .leaderboard-table td {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .leaderboard-table tr:nth-child(even) {
+      background-color: #f7f7f7;
     }
 
     .leaderboard-note {
       text-align: center;
       color: #666;
+      margin-top: 1rem;
     }
 
     @media (max-width: 768px) {
@@ -144,7 +175,7 @@
 
       <p><strong>1.</strong> Choose <strong>one golfer from each of the five groups</strong> below.</p>
 
-      <p><strong>2.</strong> Your golfers will score points based on where they finish within their group:</p>
+      <p><strong>2.</strong> Your golfers score points based on where they finish within their group:</p>
       <ul>
         <li>1st in group: 5 points</li>
         <li>2nd in group: 4 points</li>
@@ -154,17 +185,17 @@
         <li>Missed cut: -1 point</li>
       </ul>
 
-      <p><strong>3.</strong> Bonus points are also available:</p>
+      <p><strong>3.</strong> Bonus points are available for:</p>
       <ul>
         <li>+5 points if your golfer wins the Masters</li>
         <li>+2 points if your golfer is the tournament leader after Round 1</li>
       </ul>
 
-      <p><strong>4.</strong> If players tie for a position within a group, dead-heat scoring applies. The points for the tied positions are added together and divided equally between those players.</p>
+      <p><strong>4.</strong> If players tie for a position within a group, dead-heat scoring applies. The points for the tied positions are added together and divided equally between those tied players.</p>
 
       <p><em>Example:</em> if 3 players tie for 2nd place, the points for 2nd, 3rd and 4th are added together (4 + 3 + 2 = 9), so each player receives 3 points.</p>
 
-      <p><strong>5.</strong> Entry is <strong>€10</strong>. The winner takes the full prize pool, with tied winners splitting the pot equally.</p>
+      <p><strong>5.</strong> Entry is <strong>€10</strong>. Winner takes all, with tied winners splitting the prize pool equally.</p>
 
       <p><strong>6.</strong> To enter, send your payment by Revolut and then submit your picks using the form below.</p>
 
@@ -306,15 +337,15 @@
           <option>Michael La Sasso</option>
           <option>Ethan Fang (A)</option>
           <option>Jackson Herrington (A)</option>
-          <option>Brandon Holtz (A)</option>
           <option>Naoyuki Kataoka</option>
-          <option>Mason Howell (A)</option>
+          <option>Brandon Holtz</option>
           <option>Fifa Laopakdee (A)</option>
+          <option>Mason Howell</option>
           <option>Ángel Cabrera</option>
           <option>Fred Couples</option>
-          <option>Mateo Pulcini (A)</option>
           <option>Vijay Singh</option>
           <option>Mike Weir</option>
+          <option>Mateo Pulcini</option>
           <option>José María Olazábal</option>
         </select>
 
@@ -326,14 +357,109 @@
   <div id="leaderboardTab" style="display:none;">
     <div class="container">
       <h2>Leaderboard</h2>
-      <p class="leaderboard-note">Leaderboard coming here once connected to the published sheet.</p>
+      <div class="leaderboard-wrap">
+        <div id="leaderboard">Loading leaderboard...</div>
+      </div>
+      <p class="leaderboard-note">Leaderboard updates automatically from the live Google Sheet.</p>
     </div>
   </div>
 
   <script>
+    let leaderboardLoaded = false;
+
+    function parseCSVLine(line) {
+      const result = [];
+      let current = "";
+      let insideQuotes = false;
+
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        const nextChar = line[i + 1];
+
+        if (char === '"') {
+          if (insideQuotes && nextChar === '"') {
+            current += '"';
+            i++;
+          } else {
+            insideQuotes = !insideQuotes;
+          }
+        } else if (char === ',' && !insideQuotes) {
+          result.push(current);
+          current = "";
+        } else {
+          current += char;
+        }
+      }
+
+      result.push(current);
+      return result;
+    }
+
+    async function loadLeaderboard() {
+      const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQtmHxiXLA6_CNu9E8DDYMsWSo1Es4nJ5Jk4-KGM08-OiTYxeG0LNDa7UmRn5Azon2y1iDVowv9--u7/pub?gid=1858004008&single=true&output=csv";
+
+      try {
+        const response = await fetch(url);
+        const data = await response.text();
+        const rows = data.trim().split("\n").map(parseCSVLine);
+
+        const dataRows = rows.slice(1).filter(row => row.length >= 12);
+        dataRows.sort((a, b) => Number(b[11] || 0) - Number(a[11] || 0));
+
+        let html = "<table class='leaderboard-table'>";
+        html += "<thead><tr>";
+        html += "<th>Rank</th>";
+        html += "<th>Name</th>";
+        html += "<th>Group A</th>";
+        html += "<th>Group B</th>";
+        html += "<th>Group C</th>";
+        html += "<th>Group D</th>";
+        html += "<th>Group E</th>";
+        html += "<th>Total</th>";
+        html += "</tr></thead><tbody>";
+
+        dataRows.forEach((row, i) => {
+          const name = row[0] || "";
+          const a = row[1] || "";
+          const b = row[2] || "";
+          const c = row[3] || "";
+          const d = row[4] || "";
+          const e = row[5] || "";
+          const total = row[11] || "0";
+
+          let medal = "";
+          if (i === 0) medal = "🥇 ";
+          else if (i === 1) medal = "🥈 ";
+          else if (i === 2) medal = "🥉 ";
+
+          html += "<tr>";
+          html += "<td><strong>" + (i + 1) + "</strong></td>";
+          html += "<td><strong>" + medal + name + "</strong></td>";
+          html += "<td>" + a + "</td>";
+          html += "<td>" + b + "</td>";
+          html += "<td>" + c + "</td>";
+          html += "<td>" + d + "</td>";
+          html += "<td>" + e + "</td>";
+          html += "<td><strong>" + total + "</strong></td>";
+          html += "</tr>";
+        });
+
+        html += "</tbody></table>";
+        document.getElementById("leaderboard").innerHTML = html;
+      } catch (error) {
+        document.getElementById("leaderboard").innerHTML = "Unable to load leaderboard right now.";
+        console.error("Leaderboard error:", error);
+      }
+    }
+
     function showTab(tab) {
-      document.getElementById('entryTab').style.display = tab === 'entry' ? 'block' : 'none';
-      document.getElementById('leaderboardTab').style.display = tab === 'leaderboard' ? 'block' : 'none';
+      document.getElementById("entryTab").style.display = tab === "entry" ? "block" : "none";
+      document.getElementById("leaderboardTab").style.display = tab === "leaderboard" ? "block" : "none";
+
+      if (tab === "leaderboard" && !leaderboardLoaded) {
+        loadLeaderboard();
+        leaderboardLoaded = true;
+      }
     }
 
     document.getElementById("entryForm").addEventListener("submit", function(e) {
@@ -342,8 +468,17 @@
       fetch("YOUR_GOOGLE_SCRIPT_URL", {
         method: "POST",
         body: new FormData(e.target)
-      }).then(() => {
-        window.location.href = "thank-you.html";
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "thank-you.html";
+        } else {
+          alert("There was an issue submitting your entry. Please try again later.");
+        }
+      })
+      .catch(error => {
+        console.error("Submission error:", error);
+        alert("Submission failed. Please try again later.");
       });
     });
 
@@ -354,16 +489,17 @@
       const t = deadline - now;
 
       if (t <= 0) {
-        document.getElementById("countdown").innerHTML = "Entries Closed";
+        document.getElementById("countdown").innerHTML = "✅ Entries are now closed.";
         return;
       }
 
       const d = Math.floor(t / (1000 * 60 * 60 * 24));
       const h = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const m = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((t % (1000 * 60)) / 1000);
 
       document.getElementById("countdown").innerHTML =
-        "Entries close in: " + d + "d " + h + "h " + m + "m";
+        "⏳ Entries close in: " + d + "d " + h + "h " + m + "m " + s + "s";
     }
 
     setInterval(updateCountdown, 1000);
