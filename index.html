@@ -6,69 +6,41 @@
   <title>Gibraltar Gaels Masters 2026 Fundraiser</title>
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 2rem;
-      background-color: #f9f9f9;
-    }
-
-    h1, h2 {
-      text-align: center;
-      color: #c00000;
-    }
+    body { font-family: Arial; padding: 2rem; background:#f9f9f9; }
+    h1,h2 { text-align:center; color:#c00000; }
 
     .container {
-      max-width: 900px;
-      margin: 2rem auto;
-      background: #fff;
-      padding: 2rem;
-      border: 3px solid #c00000;
-      border-radius: 20px;
+      max-width:900px;
+      margin:2rem auto;
+      background:#fff;
+      padding:2rem;
+      border:3px solid #c00000;
+      border-radius:20px;
     }
 
-    label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 0.5rem;
-      border-radius: 5px;
-    }
+    label { display:block; margin-top:1rem; font-weight:bold; }
+    select,input,button { width:100%; padding:10px; margin-top:5px; }
 
     button {
-      background-color: #c00000;
-      color: white;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      margin-top: 1.5rem;
+      background:#c00000;
+      color:white;
+      border:none;
+      font-weight:bold;
+      cursor:pointer;
+      margin-top:1.5rem;
     }
 
-    nav {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
+    nav { text-align:center; margin-bottom:2rem; }
     nav button {
-      margin: 0 10px;
-      padding: 10px 20px;
-      background-color: #c00000;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      margin:0 10px;
+      padding:10px 20px;
+      background:#c00000;
+      color:white;
+      border:none;
+      border-radius:5px;
     }
 
-    #countdown {
-      text-align: center;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
+    #countdown { text-align:center; font-weight:bold; }
   </style>
 </head>
 
@@ -81,7 +53,6 @@
 
 <div id="countdown"></div>
 
-<!-- ENTRY TAB -->
 <div id="entryTab">
 
 <h1>Gibraltar Gaels Masters 2026 Fundraiser</h1>
@@ -99,7 +70,7 @@
     <li>Missed Cut: -1</li>
   </ul>
 
-  <p><strong>Bonus:</strong></p>
+  <p><strong>Bonus</strong></p>
   <ul>
     <li>+5 Winner</li>
     <li>+2 Round 1 Leader</li>
@@ -110,104 +81,198 @@
 </div>
 
 <div class="container">
-  <h2>Submit Entry</h2>
+<form id="entryForm">
 
-  <form id="entryForm">
+<label>Name</label>
+<input type="text" name="name" required>
 
-    <label>Name</label>
-    <input type="text" name="name" required>
+<label>Email</label>
+<input type="email" name="email" required>
 
-    <label>Email</label>
-    <input type="email" name="email" required>
+<!-- GROUP A -->
+<label>Group A</label>
+<select name="groupA" required>
+<option value="">Select</option>
+<option>Scottie Scheffler</option>
+<option>Bryson DeChambeau</option>
+<option>Rory McIlroy</option>
+<option>Jon Rahm</option>
+<option>Ludvig Åberg</option>
+<option>Xander Schauffele</option>
+<option>Matt Fitzpatrick</option>
+<option>Tommy Fleetwood</option>
+<option>Cameron Young</option>
+<option>Collin Morikawa</option>
+<option>Justin Rose</option>
+<option>Hideki Matsuyama</option>
+<option>Brooks Koepka</option>
+<option>Patrick Reed</option>
+<option>Viktor Hovland</option>
+<option>Robert MacIntyre</option>
+</select>
 
-    <label>Group A</label>
-    <select name="groupA" required>
-      <option value="">Select</option>
-      <option>Scottie Scheffler</option>
-      <option>Rory McIlroy</option>
-      <option>Jon Rahm</option>
-    </select>
+<!-- GROUP B -->
+<label>Group B</label>
+<select name="groupB" required>
+<option value="">Select</option>
+<option>Jordan Spieth</option>
+<option>Shane Lowry</option>
+<option>Justin Thomas</option>
+<option>Min Woo Lee</option>
+<option>Patrick Cantlay</option>
+<option>Akshay Bhatia</option>
+<option>Corey Conners</option>
+<option>Jason Day</option>
+<option>Chris Gotterup</option>
+<option>Tyrrell Hatton</option>
+<option>Russell Henley</option>
+<option>Marco Penge</option>
+<option>Adam Scott</option>
+<option>Sepp Straka</option>
+<option>Sungjae Im</option>
+<option>Si Woo Kim</option>
+<option>Jacob Bridgeman</option>
+<option>Sam Burns</option>
+</select>
 
-    <label>Group B</label>
-    <select name="groupB" required>
-      <option value="">Select</option>
-      <option>Shane Lowry</option>
-      <option>Justin Thomas</option>
-    </select>
+<!-- GROUP C -->
+<label>Group C</label>
+<select name="groupC" required>
+<option value="">Select</option>
+<option>Ben Griffin</option>
+<option>Maverick McNealy</option>
+<option>J.J. Spaun</option>
+<option>Jake Knapp</option>
+<option>Rickie Fowler</option>
+<option>Will Zalatoris</option>
+<option>Nicolai Hojgaard</option>
+<option>Harris English</option>
+<option>Cameron Smith</option>
+<option>Pongsapak Laopakdee</option>
+<option>Max Homa</option>
+<option>Casey Jarvis</option>
+<option>Thomas Detry</option>
+<option>Rasmus Højgaard</option>
+<option>Keegan Bradley</option>
+<option>Wyndham Clark</option>
+<option>Nicolas Echavarria</option>
+<option>Sergio García</option>
+<option>Ryan Gerard</option>
+<option>Dustin Johnson</option>
+<option>Kurt Kitayama</option>
+<option>Andrew Novak</option>
+<option>Stephan Jaeger</option>
+</select>
 
-    <label>Group C</label>
-    <select name="groupC" required>
-      <option value="">Select</option>
-      <option>Dustin Johnson</option>
-      <option>Wyndham Clark</option>
-    </select>
+<!-- GROUP D -->
+<label>Group D</label>
+<select name="groupD" required>
+<option value="">Select</option>
+<option>Ryan Fox</option>
+<option>Tom McKibbin</option>
+<option>Aaron Rai</option>
+<option>Anthony Kim</option>
+<option>Max Greyserman</option>
+<option>Harry Hall</option>
+<option>Brian Harman</option>
+<option>Rasmus Neergaard-Petersen</option>
+<option>Alex Noren</option>
+<option>Carlos Ortiz</option>
+<option>Samuel Stevens</option>
+<option>Tom Hoge</option>
+<option>Christiaan Bezuidenhout</option>
+<option>Byeong-Hun An</option>
+<option>Matt McCarty</option>
+<option>Jayden Schaper</option>
+<option>Haotong Li</option>
+<option>John Keefer</option>
+<option>Phil Mickelson</option>
+<option>Aldrich Potgieter</option>
+<option>Sami Valimaki</option>
+<option>Lucas Glover</option>
+<option>Michael Kim</option>
+</select>
 
-    <label>Group D</label>
-    <select name="groupD" required>
-      <option value="">Select</option>
-      <option>Phil Mickelson</option>
-    </select>
+<!-- GROUP E -->
+<label>Group E</label>
+<select name="groupE" required>
+<option value="">Select</option>
+<option>Webb Simpson</option>
+<option>Adam Hadwin</option>
+<option>Nick Dunlap</option>
+<option>Nick Taylor</option>
+<option>Tiger Woods</option>
+<option>Pierceson Coody</option>
+<option>Michael Brennan</option>
+<option>Kristoffer Reitan</option>
+<option>Davis Riley</option>
+<option>Charl Schwartzel</option>
+<option>Bubba Watson</option>
+<option>Brian Campbell</option>
+<option>Zach Johnson</option>
+<option>Danny Willett</option>
+<option>Michael La Sasso</option>
+<option>Ethan Fang (A)</option>
+<option>Jackson Herrington (A)</option>
+<option>Brandon Holtz (A)</option>
+<option>Naoyuki Kataoka</option>
+<option>Mason Howell (A)</option>
+<option>Fifa Laopakdee (A)</option>
+<option>Ángel Cabrera</option>
+<option>Fred Couples</option>
+<option>Mateo Pulcini (A)</option>
+<option>Vijay Singh</option>
+<option>Mike Weir</option>
+<option>José María Olazábal</option>
+</select>
 
-    <label>Group E</label>
-    <select name="groupE" required>
-      <option value="">Select</option>
-      <option>Tiger Woods</option>
-    </select>
+<button type="submit">Submit</button>
 
-    <button type="submit">Submit</button>
-  </form>
-
+</form>
+</div>
 </div>
 
-</div>
-
-<!-- LEADERBOARD -->
 <div id="leaderboardTab" style="display:none;">
-  <div class="container">
-    <h2>Leaderboard</h2>
-    <div id="leaderboard"></div>
-  </div>
+<div class="container">
+<h2>Leaderboard</h2>
+</div>
 </div>
 
 <script>
-
-function showTab(tab) {
-  document.getElementById('entryTab').style.display = tab === 'entry' ? 'block' : 'none';
-  document.getElementById('leaderboardTab').style.display = tab === 'leaderboard' ? 'block' : 'none';
+function showTab(tab){
+  document.getElementById('entryTab').style.display = tab==='entry'?'block':'none';
+  document.getElementById('leaderboardTab').style.display = tab==='leaderboard'?'block':'none';
 }
 
-document.getElementById("entryForm").addEventListener("submit", function(e) {
+document.getElementById("entryForm").addEventListener("submit", function(e){
   e.preventDefault();
-
-  fetch("YOUR_GOOGLE_SCRIPT_URL", {
-    method: "POST",
-    body: new FormData(e.target)
-  })
-  .then(() => window.location.href = "thank-you.html");
+  fetch("YOUR_GOOGLE_SCRIPT_URL",{
+    method:"POST",
+    body:new FormData(e.target)
+  }).then(()=>window.location.href="thank-you.html");
 });
 
 const deadline = new Date("April 9, 2026 12:00:00 GMT+0200");
 
-function updateCountdown() {
+function updateCountdown(){
   const now = new Date().getTime();
   const t = deadline - now;
 
-  if (t <= 0) {
-    document.getElementById("countdown").innerHTML = "Entries Closed";
+  if(t<=0){
+    document.getElementById("countdown").innerHTML="Entries Closed";
     return;
   }
 
-  const d = Math.floor(t / (1000*60*60*24));
-  const h = Math.floor((t % (1000*60*60*24))/(1000*60*60));
-  const m = Math.floor((t % (1000*60*60))/(1000*60));
+  const d=Math.floor(t/(1000*60*60*24));
+  const h=Math.floor((t%(1000*60*60*24))/(1000*60*60));
+  const m=Math.floor((t%(1000*60*60))/(1000*60));
 
-  document.getElementById("countdown").innerHTML =
-    "Entries close in: " + d + "d " + h + "h " + m + "m";
+  document.getElementById("countdown").innerHTML=
+  "Entries close in: "+d+"d "+h+"h "+m+"m";
 }
 
-setInterval(updateCountdown, 1000);
+setInterval(updateCountdown,1000);
 updateCountdown();
-
 </script>
 
 </body>
