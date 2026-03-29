@@ -262,7 +262,7 @@ document.getElementById("entryForm").addEventListener("submit", function(e){
 e.preventDefault();
 
 fetch("https://script.google.com/macros/s/AKfycbyLK1O15iIFUX_D1NNj4Z7GOt2LJtD0pmGGcxzvymBvSljJSqYFLqxz3KISelY07WdErA/exec", {
-method:"POST",
+    method: "POST",
 body:new FormData(e.target),
 mode:"no-cors"
 })
