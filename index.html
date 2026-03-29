@@ -1,69 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gibraltar Gaels Masters 2026 Fundraiser</title>
 
-
-        setTimeout(() => {
-          if (tab === 'entry') {
-            entryTab.style.opacity = 1;
-          } else {
-            leaderboardTab.style.opacity = 1;
-            if (!window.leaderboardLoaded) {
-              loadLeaderboard();
-              window.leaderboardLoaded = true;
-            }
-          }
-        }, 50);
-      }, 200);
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f9f9f9;
     }
 
-    const deadline = new Date("April 9, 2026 12:00:00 GMT+0200");
+    h1, h2 {
+      text-align: center;
+      color: #c00000;
+    }
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const countdownEl = document.getElementById("countdown");
-      const entryNavBtn = document.getElementById("entryNavBtn");
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border: 3px solid #c00000;
+      border-radius: 20px;
+    }
 
-      function updateCountdown() {
-        const now = new Date().getTime();
-        const t = deadline - now;
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
 
-        if (t <= 0 && !window.countdownFinished) {
-          window.countdownFinished = true;
-          countdownEl.innerHTML = "✅ Entries are now closed.";
-          document.getElementById("entryTab").style.display = "none";
-          entryNavBtn.style.display = "none";
-          if (!window.leaderboardLoaded) {
-            loadLeaderboard();
-            window.leaderboardLoaded = true;
-          }
-          showTab('leaderboard');
-          return;
-        }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 0.5rem;
+      border-radius: 5px;
+    }
 
-        const days = Math.floor(t / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((t % (1000 * 60)) / 1000);
-        countdownEl.innerHTML = `⏳ Entries close in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }
+    button {
+      background-color: #c00000;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 1.5rem;
+    }
 
-      window.leaderboardLoaded = false;
-      window.countdownFinished = false;
+    nav {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
 
-      setInterval(updateCountdown, 1000);
-      updateCountdown();
+    nav button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      background-color: #c00000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-      const now = new Date().getTime();
-      const entryOpen = now < deadline;
+    #countdown {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
 
-      if (entryOpen) {
-        showTab('entry');
-      } else {
-        document.getElementById("entryTab").style.display = "none";
-        entryNavBtn.style.display = "none";
-        showTab('leaderboard');
-      }
-    });
-  </script>
+<body>
+
+<nav>
+  <button onclick="showTab('entry')">To Enter</button>
+  <button onclick="showTab('leaderboard')">Leaderboard</button>
+</nav>
+
+<div id="countdown"></div>
+
+<!-- ENTRY TAB -->
+<div id="entryTab">
+
+<h1>Gibraltar Gaels Masters 2026 Fundraiser</h1>
+
+<div class="container">
+  <h2>How It Works</h2>
+  <p>Pick one golfer from each group.</p>
+
+  <ul>
+    <li>1st: 5 pts</li>
+    <li>2nd: 4 pts</li>
+    <li>3rd: 3 pts</li>
+    <li>4th: 2 pts</li>
+    <li>5th: 1 pt</li>
+    <li>Missed Cut: -1</li>
+  </ul>
+
+  <p><strong>Bonus:</strong></p>
+  <ul>
+    <li>+5 Winner</li>
+    <li>+2 Round 1 Leader</li>
+  </ul>
+
+  <p><strong>Entry €10</strong></p>
+  <p><strong>Entries close April 9th at 12:00</strong></p>
+</div>
+
+<div class="container">
+  <h2>Submit Entry</h2>
+
+  <form id="entryForm">
+
+    <label>Name</label>
+    <input type="text" name="name" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <label>Group A</label>
+    <select name="groupA" required>
+      <option value="">Select</option>
+      <option>Scottie Scheffler</option>
+      <option>Rory McIlroy</option>
+      <option>Jon Rahm</option>
+    </select>
+
+    <label>Group B</label>
+    <select name="groupB" required>
+      <option value="">Select</option>
+      <option>Shane Lowry</option>
+      <option>Justin Thomas</option>
+    </select>
+
+    <label>Group C</label>
+    <select name="groupC" required>
+      <option value="">Select</option>
+      <option>Dustin Johnson</option>
+      <option>Wyndham Clark</option>
+    </select>
+
+    <label>Group D</label>
+    <select name="groupD" required>
+      <option value="">Select</option>
+      <option>Phil Mickelson</option>
+    </select>
+
+    <label>Group E</label>
+    <select name="groupE" required>
+      <option value="">Select</option>
+      <option>Tiger Woods</option>
+    </select>
+
+    <button type="submit">Submit</button>
+  </form>
+
+</div>
+
+</div>
+
+<!-- LEADERBOARD -->
+<div id="leaderboardTab" style="display:none;">
+  <div class="container">
+    <h2>Leaderboard</h2>
+    <div id="leaderboard"></div>
+  </div>
+</div>
+
+<script>
+
+function showTab(tab) {
+  document.getElementById('entryTab').style.display = tab === 'entry' ? 'block' : 'none';
+  document.getElementById('leaderboardTab').style.display = tab === 'leaderboard' ? 'block' : 'none';
+}
+
+document.getElementById("entryForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  fetch("YOUR_GOOGLE_SCRIPT_URL", {
+    method: "POST",
+    body: new FormData(e.target)
+  })
+  .then(() => window.location.href = "thank-you.html");
+});
+
+const deadline = new Date("April 9, 2026 12:00:00 GMT+0200");
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const t = deadline - now;
+
+  if (t <= 0) {
+    document.getElementById("countdown").innerHTML = "Entries Closed";
+    return;
+  }
+
+  const d = Math.floor(t / (1000*60*60*24));
+  const h = Math.floor((t % (1000*60*60*24))/(1000*60*60));
+  const m = Math.floor((t % (1000*60*60))/(1000*60));
+
+  document.getElementById("countdown").innerHTML =
+    "Entries close in: " + d + "d " + h + "h " + m + "m";
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+</script>
+
 </body>
 </html>
