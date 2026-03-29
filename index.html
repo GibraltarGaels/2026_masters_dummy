@@ -464,7 +464,7 @@
     document.getElementById("entryForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      fetch("YOUR_GOOGLE_SCRIPT_URL", {
+      fetch("https://script.google.com/macros/s/AKfycbyLK1O15iIFUX_D1NNj4Z7GOt2LJtD0pmGGcxzvymBvSljJSqYFLqxz3KISelY07WdErA/exec", {
         method: "POST",
         body: new FormData(e.target)
       })
