@@ -961,26 +961,26 @@
 
   const deadline = new Date("April 9, 2026 12:00:00 GMT+0200");
 
-  function updateCountdown() {
-    const t = deadline - new Date();
+  <script>
+function updateCountdown() {
+  const t = deadline - new Date();
+  const entrySection = document.getElementById("enter");
+  const entryNavLink = document.querySelector('a[href="#enter"]');
 
-    if (t <= 0) {
-      document.getElementById("countdown").innerHTML = "Entries Closed";
-      return;
-    }
-
-    const d = Math.floor(t / (1000 * 60 * 60 * 24));
-    const h = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-
-    document.getElementById("countdown").innerHTML =
-      `Entries close in: ${d}d ${h}h ${m}m`;
+  if (t <= 0) {
+    document.getElementById("countdown").innerHTML = "Entries Closed";
+    if (entrySection) entrySection.style.display = "none";
+    if (entryNavLink) entryNavLink.style.display = "none";
+    return;
   }
 
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
-  loadLeaderboard();
-</script>
+  const d = Math.floor(t / (1000 * 60 * 60 * 24));
+  const h = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const m = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
 
+  document.getElementById("countdown").innerHTML =
+    `Entries close in: ${d}d ${h}h ${m}m`;
+}
+</script>
 </body>
 </html>
