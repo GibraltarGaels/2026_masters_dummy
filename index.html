@@ -549,7 +549,7 @@
     <div class="header-divider"><div class="header-divider-icon">⛳</div></div>
   </div>
   <nav class="header-nav">
-    <a class="nav-link" href="#enter">Enter the Competition</a>
+    <a class="nav-link" href="#enter" id="enterNavLink">Enter the Competition</a>
     <a class="nav-link" href="#leaderboard">Leaderboard</a>
     <a class="nav-link" href="#groups">Player Groups</a>
   </nav>
@@ -963,10 +963,29 @@
 
   function updateCountdown() {
     const t = deadline - new Date();
+    const entrySection = document.getElementById("enter");
+    const enterNavLink = document.getElementById("enterNavLink");
 
     if (t <= 0) {
       document.getElementById("countdown").innerHTML = "Entries Closed";
+
+      if (entrySection) {
+        entrySection.style.display = "none";
+      }
+
+      if (enterNavLink) {
+        enterNavLink.style.display = "none";
+      }
+
       return;
+    }
+
+    if (entrySection) {
+      entrySection.style.display = "block";
+    }
+
+    if (enterNavLink) {
+      enterNavLink.style.display = "inline-block";
     }
 
     const d = Math.floor(t / (1000 * 60 * 60 * 24));
